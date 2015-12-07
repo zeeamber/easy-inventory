@@ -7,16 +7,29 @@ REST API for mobile applications using Node.js and Express.js framework with Mon
 
 You need to have installed Node.js and MongoDB 
 
-### Install dependencies 
+### Setup project 
 
-To install dependencies enter project folder and run following command:
+To setup project enter project folder and run following command:
 ```
-npm install
+sh setup.sh
 ```
 
-### Run server
+### Make Requests
 
-To run server execute:
+Creating User and Client:
 ```
-npm start 
+http POST http://localhost:3000/users/register  username=user1234 password=abc1234
+http POST http://localhost:3000/clients/register  name=androidClient clientId=client2645
 ```
+
+Creating and refreshing access tokens:
+```
+http POST http://localhost:3000/oauth/token grant_type=password client_id=client2645 client_secret=your_client_secret username=user1234 password=abc1234
+http POST http://localhost:3000/oauth/token grant_type=refresh_token client_id=client2645 client_secret=your_client_secret refresh_token=REFRESH_TOKEN
+```
+
+Adding a new product:
+```
+http POST http://localhost:3000/api/products accessToken=Your_Access_Token title='OnePlus One' description='Sandstone Black, 64 GB' price=2190 quantity=150
+```
+Refer API Documentation to know about more APIs.
